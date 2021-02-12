@@ -70,6 +70,8 @@ def __settings_handler(message: telebot.types.Message):
 @bot.message_handler(content_types=['text'])
 def __text_handler(message: telebot.types.Message):
     print("Пользователь '{}' отправил '{}'".format(get_user_id(message), message.text, ))
+    bot.send_message(message.chat.id, text='Да, я умею обрабатывать текст, и что? А А А А А?',
+                     reply_to_message_id=message.message_id)
 
 
 def get_user_id(message: telebot.types.Message) -> str:
