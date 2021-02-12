@@ -2,7 +2,7 @@ import telebot
 
 REMOVED_MARKUP = telebot.types.ReplyKeyboardRemove()
 
-MAIN_PAGE_MARKUP = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True) \
+MAIN_PAGE_MARKUP = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=False) \
     .row(telebot.types.KeyboardButton('🍭 Поиск'),
          telebot.types.KeyboardButton('🍱 Категории')) \
     .row(telebot.types.KeyboardButton('🍻 Помощь'),
