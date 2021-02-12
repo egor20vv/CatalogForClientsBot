@@ -83,10 +83,14 @@ def __settings_handler(message: telebot.types.Message):
     bot.send_message(message.chat.id, text=text, reply_markup=markup)
 
 
-@bot.callback_query_handler(func=lambda callback: 's:0' in callback.data)
+@bot.callback_query_handler(func=lambda callback: 's:' in callback.data)
 def __settings_callback_respond(callback: telebot.types.CallbackQuery):
-    actual_value = user.turn_setting_sn(callback.from_user.id, s_value=0)
-    print("Пользоватеь '{}' изменил параметр 's:0' на значение '{}'".format(callback.from_user.id, actual_value))
+    s_value = int(str(callback.data)[2])
+    s_number_string = str(callback.data)[0:3]
+
+    actual_value = user.turn_setting_sn(callback.from_user.id, s_value=s_value)
+    print("Пользоватеь '{}' изменил параметр '{}' на значение '{}'"
+          .format(callback.from_user.id, s_number_string, actual_value))
     markup = get_settings_markup(callback.from_user.id)
     bot.edit_message_reply_markup(callback.message.json['chat']['id'],
                                   callback.message.message_id,
