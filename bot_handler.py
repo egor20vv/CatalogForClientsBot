@@ -89,14 +89,20 @@ def __settings_callback_respond(callback: telebot.types.CallbackQuery):
     s_number_string = str(callback.data)[0:3]
 
     actual_value = user.turn_setting_sn(callback.from_user.id, s_value=s_value)
-    print("Пользоватеь '{}' изменил параметр '{}' на значение '{}'"
-          .format(callback.from_user.id, s_number_string, actual_value))
+
     markup = get_settings_markup(callback.from_user.id)
-    bot.edit_message_reply_markup(callback.message.json['chat']['id'],
-                                  callback.message.message_id,
-                                  callback.inline_message_id,
-                                  reply_markup=markup)
-    # callback.data
+
+    try:
+        bot.edit_message_reply_markup(callback.message.json['chat']['id'],
+                                      callback.message.message_id,
+                                      callback.inline_message_id,
+                                      reply_markup=markup)
+
+        print("Пользоватеь '{}' изменил параметр '{}' на значение '{}'"
+              .format(callback.from_user.id, s_number_string, actual_value))
+    except telebot.apihelper.ApiTelegramException as e:
+        print("Пользователю '{}' не удалось изменить параметр {}: {}"
+              .format(callback.from_user.id, s_number_string, e))
 
 
 # Respond on search
