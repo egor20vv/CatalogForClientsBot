@@ -1,7 +1,7 @@
 import shelve
 import reporter
 
-USER_DATA_DB_NAME = 'user_data'
+USER_DATA_DB_NAME = 'dbs\\udata'
 DEFAULT_USER_DATA = {
     'settings': 0
 }
