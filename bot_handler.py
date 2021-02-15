@@ -83,6 +83,7 @@ def __settings_handler(message: telebot.types.Message):
     bot.send_message(message.chat.id, text=text, reply_markup=markup)
 
 
+# respond on changing settings
 @bot.callback_query_handler(func=lambda callback: 's:' in callback.data)
 def __settings_callback_respond(callback: telebot.types.CallbackQuery):
     s_value = int(str(callback.data)[2])
@@ -103,6 +104,16 @@ def __settings_callback_respond(callback: telebot.types.CallbackQuery):
     except telebot.apihelper.ApiTelegramException as e:
         print("Пользователю '{}' не удалось изменить параметр {}: {}"
               .format(callback.from_user.id, s_number_string, e))
+
+
+# go to share
+@bot.message_handler(content_types=['text'], func=lambda message: message.text == '🥂 Поделиться')
+def __share_handler(message: telebot.types.Message):
+    # TODO release share
+    text = 'Ну тут ты будешь дулиться ботом, вот бы кто реализвал...'
+    bot.send_message(message.chat.id,
+                     text=text)
+    print("Пользователь '{}' возжелал поделиться ботом, какой молодец".format(reporter.get_user_id(message)))
 
 
 # Respond on search
