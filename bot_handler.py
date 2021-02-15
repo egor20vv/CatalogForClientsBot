@@ -136,14 +136,14 @@ def get_settings_markup(user_id: int) -> telebot.types.InlineKeyboardMarkup:
     markup.row(telebot.types.InlineKeyboardButton('Показывать товары той же категории: {}'
                                                   .format('Нет' if settings['s1'] else 'Да'),
                                                   callback_data="s:1{}".format(int(settings['s1']))))
-    if settings['s1'] is True:
+    if settings['s1'] is False:
         markup.row(telebot.types.InlineKeyboardButton('🔼 Количество отображаемых полей: {}'
                                                       .format(4 if settings['s2'] else 2),
                                                       callback_data='s:2{}'.format(int(settings['s2']))))
     markup.row(telebot.types.InlineKeyboardButton('Показывать товары \'С этим покапают\': {}'
                                                   .format('Нет' if settings['s3'] else 'Да'),
                                                   callback_data="s:3{}".format(int(settings['s3']))))
-    if settings['s3'] is True:
+    if settings['s3'] is False:
         markup.row(telebot.types.InlineKeyboardButton('🔼 Количество отображаемых полей: {}'
                                                       .format(4 if settings['s4'] else 2),
                                                       callback_data='s:4{}'.format(int(settings['s4']))))
