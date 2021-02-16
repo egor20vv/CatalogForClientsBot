@@ -3,7 +3,9 @@ import reporter
 
 USER_DATA_DB_NAME = 'dbs\\udata'
 DEFAULT_USER_DATA = {
-    'settings': 0
+    'settings': 0,
+    'category': None,
+    'result': None
 }
 
 
